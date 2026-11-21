@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Feliz Cumpleaños Mamá</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="screen" id="intro">
+    <div class="fx" id="heartFx" aria-hidden="true"></div>
+    <button class="flower-btn" type="button" id="flowerBtn" aria-label="Toca la flor">
+      <span class="flower-wrap">
+        <img class="flower flower-normal" src="flor.webp" alt="">
+        <img class="flower flower-love" src="flor-love.webp" alt="">
+      </span>
+    </button>
+    <p class="msg" id="introMsg">toca la flor</p>
+  </section>
+
+  <section class="screen" id="cards" hidden>
+    <div class="fx cards-fx" id="cardsFx" aria-hidden="true"></div>
+    <img class="deco-flower df1" src="flor-morada.webp" alt="">
+    <img class="deco-flower df2" src="girasol.webp" alt="">
+    <img class="deco-flower df3" src="rosa.webp" alt="">
+    <img class="deco-flower df4" src="girasol.webp" alt="">
+    <img class="deco-flower df5" src="rosa.webp" alt="">
+    <img class="deco-flower df6" src="flor-morada.webp" alt="">
+
+    <h1 class="cards-title">
+      <span class="feliz">Feliz Cumpleaños</span>
+      <img class="mama-art" src="mama.webp" alt="Mamá">
+    </h1>
+    <p class="cards-sub">tus momentos favoritos</p>
+
+    <div class="gallery">
+      <label class="polaroid">
+        <span class="shot"><img src="fotos/foto1.webp" alt="Foto de mamá"></span>
+        <span class="caption">i love you &lt;3</span>
+        <img class="sticker sticker-cat" src="gato.webp" alt="">
+        <input type="file" accept="image/*">
+      </label>
+
+      <label class="polaroid tilt">
+        <span class="shot"><img src="fotos/foto2.webp" alt="Foto de mamá"></span>
+        <span class="caption">siempre</span>
+        <input type="file" accept="image/*">
+      </label>
+
+      <label class="polaroid tilt2">
+        <span class="shot"><img src="fotos/foto3.webp" alt="Foto de mamá" onerror="this.closest('.shot').classList.add('empty')"></span>
+        <span class="caption">mi reina</span>
+        <img class="sticker sticker-oso" src="oso.webp" alt="Te amo mamá">
+        <input type="file" accept="image/*">
+      </label>
+    </div>
+
+    <button class="next-btn" type="button" id="toCakeBtn">ver el pastel →</button>
+  </section>
+
+  <section class="screen" id="cake" hidden>
+    <div class="fx cake-fx" id="cakeFx" aria-hidden="true"></div>
+    <p class="cake-title">pide un deseo</p>
+    <p class="cake-sub" id="cakeMsg">toca la vela para apagar</p>
+
+    <img class="mama-party" src="mama-cutout.webp" alt="Mamá">
+
+    <button class="cake-stage" type="button" id="candleBtn" aria-label="Toca la vela">
+      <div class="cake-photo-wrap">
+        <div class="candle lit" id="candle">
+          <span class="flame"></span>
+          <span class="wick"></span>
+          <span class="stick"></span>
+        </div>
+        <img class="cake-photo" src="pastel.webp" alt="Pastel">
+      </div>
+    </button>
+
+    <button class="back-btn cake-back" type="button" id="backPhotosBtn">← fotos</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

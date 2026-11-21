@@ -1,0 +1,10 @@
+# originales pesados (usamos .webp en el sitio)
+*.png
+*.jpg
+*.jpeg
+!favicon.*
+
+# sistema
+.DS_Store
+Thumbs.db
+*.log
