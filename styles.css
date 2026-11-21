@@ -6,16 +6,65 @@ html, body {
   background: #ffffff;
   color: #1a1a1a;
   font-family: "Courier New", Courier, monospace;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+  overscroll-behavior: none;
 }
 
-body { min-height: 100dvh; }
+body {
+  min-height: 100dvh;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
 
 .screen {
   min-height: 100dvh;
-  width: min(100vw, 480px);
+  min-height: 100svh;
+  width: min(100vw, 430px);
   margin: 0 auto;
-  padding: 24px 16px calc(28px + env(safe-area-inset-bottom));
+  padding:
+    calc(16px + env(safe-area-inset-top))
+    16px
+    calc(28px + env(safe-area-inset-bottom));
   background: #fff;
+}
+
+.yt-wrap {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  left: -9999px;
+  top: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.music-btn {
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #c45b7a;
+  font-size: 1.25rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.music-btn.is-muted {
+  color: #aaa;
+  opacity: 0.75;
+}
+
+.music-btn[hidden] {
+  display: none !important;
 }
 
 .screen[hidden] { display: none !important; }

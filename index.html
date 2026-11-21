@@ -2,12 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Feliz Cumpleaños Mamá</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="yt-wrap" aria-hidden="true">
+    <div id="ytPlayer"></div>
+  </div>
+  <button class="music-btn" type="button" id="musicBtn" aria-label="Música" hidden>♪</button>
+
   <section class="screen" id="intro">
     <div class="fx" id="heartFx" aria-hidden="true"></div>
     <button class="flower-btn" type="button" id="flowerBtn" aria-label="Toca la flor">
@@ -16,7 +23,7 @@
         <img class="flower flower-love" src="flor-love.webp" alt="">
       </span>
     </button>
-    <p class="msg" id="introMsg">toca la flor</p>
+    <p class="msg" id="introMsg">toca la flor ♪</p>
   </section>
 
   <section class="screen" id="cards" hidden>

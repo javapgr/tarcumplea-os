@@ -11,9 +11,97 @@ const backPhotosBtn = document.querySelector("#backPhotosBtn");
 const candleBtn = document.querySelector("#candleBtn");
 const candle = document.querySelector("#candle");
 const cakeMsg = document.querySelector("#cakeMsg");
+const musicBtn = document.querySelector("#musicBtn");
+
+const YT_ID = "40AJMQob25o";
 
 let step = 0;
 let cardsFxTimer = null;
+let ytPlayer = null;
+let musicReady = false;
+let musicStarted = false;
+let musicMuted = false;
+
+function loadYouTubeApi() {
+  if (window.YT?.Player) {
+    createYtPlayer();
+    return;
+  }
+  const tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+  window.onYouTubeIframeAPIReady = createYtPlayer;
+}
+
+function createYtPlayer() {
+  ytPlayer = new YT.Player("ytPlayer", {
+    height: "1",
+    width: "1",
+    videoId: YT_ID,
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      disablekb: 1,
+      fs: 0,
+      loop: 1,
+      playlist: YT_ID,
+      modestbranding: 1,
+      playsinline: 1,
+      rel: 0,
+    },
+    events: {
+      onReady: () => {
+        musicReady = true;
+      },
+      onStateChange: (e) => {
+        // si termina, volver a poner en loop
+        if (e.data === YT.PlayerState.ENDED) {
+          ytPlayer.seekTo(0);
+          ytPlayer.playVideo();
+        }
+      },
+    },
+  });
+}
+
+function startMusic() {
+  if (musicStarted) return;
+  musicStarted = true;
+  musicBtn.hidden = false;
+  const play = () => {
+    if (!ytPlayer?.playVideo) return false;
+    ytPlayer.unMute();
+    ytPlayer.setVolume(80);
+    ytPlayer.playVideo();
+    musicMuted = false;
+    musicBtn.classList.remove("is-muted");
+    musicBtn.textContent = "♪";
+    return true;
+  };
+  if (!play()) {
+    const wait = setInterval(() => {
+      if (musicReady && play()) clearInterval(wait);
+    }, 120);
+    setTimeout(() => clearInterval(wait), 8000);
+  }
+}
+
+musicBtn?.addEventListener("click", () => {
+  if (!ytPlayer) return;
+  musicMuted = !musicMuted;
+  if (musicMuted) {
+    ytPlayer.mute();
+    musicBtn.classList.add("is-muted");
+    musicBtn.textContent = "🔇";
+  } else {
+    ytPlayer.unMute();
+    ytPlayer.playVideo();
+    musicBtn.classList.remove("is-muted");
+    musicBtn.textContent = "♪";
+  }
+});
+
+loadYouTubeApi();
 
 function setMsg(text) {
   introMsg.classList.remove("is-pop");
@@ -147,6 +235,7 @@ function startCardsFx() {
 }
 
 flowerBtn.addEventListener("click", () => {
+  startMusic();
   spawnPixelHearts(step === 0 ? 90 : 70);
   spawnPurpleFlowers(step === 0 ? 42 : 32);
 
